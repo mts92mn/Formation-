@@ -1,88 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #333;
-            overflow-x: hidden;
-        }
-        .header {
-            background: url('header-bg.jpg') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            animation: fadeIn 2s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .email-capture {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .faq, .guarantee {
-            margin: 30px;
-            padding: 20px;
-            border-radius: 5px;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .faq h2, .guarantee h2 {
-            cursor: pointer;
-        }
-        .faq-content, .guarantee-content {
-            display: none;
-            padding: 10px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devenir Riche — Formation Exclusive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #1a1a1a;
+      --text: #e8e8e8;
+      --text-muted: #888;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 22px 40px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    nav span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.08;
+      max-width: 860px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.6s;
+    }
+    .hero-cta {
+      margin-top: 52px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+    .btn-gold {
+      display: inline-block;
+      padding: 18px 52px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.35);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.2s;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .stat {
+      padding: 60px 40px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: block;
+    }
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    p { color: #aaa; font-size: 1.05rem; margin-bottom: 20px; max-width: 680px; }
+    .pillars { background: var(--dark2); padding: 100px 0; }
+    .pillars-inner { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 60px; }
+    .pillar { background: var(--dark3); padding: 48px 40px; transition: background 0.2s; }
+    .pillar:hover { background: #1f1f1f; }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 20px; display: block; }
+    .pillar h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 14px; color: #fff; }
+    .pillar p { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
+    .testimonials { background: var(--dark2); padding: 100px 0; }
+    .testimonials-inner { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+    .testi { background: var(--dark3); padding: 36px 32px; border-top: 2px solid var(--gold); }
+    .testi-text { font-size: 0.95rem; color: #aaa; font-style: italic; line-height: 1.7; margin-bottom: 24px; }
+    .testi-author { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .offer { background: var(--dark); padding: 120px 40px; text-align: center; }
+    .offer-box { max-width: 680px; margin: 0 auto; background: var(--dark2); border: 1px solid rgba(201,168,76,0.25); padding: 72px 60px; }
+    .offer-price { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); line-height: 1; margin: 28px 0 8px; }
+    .offer-price sup { font-size: 2rem; vertical-align: top; margin-top: 16px; display: inline-block; }
+    .offer-sub { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 48px; }
+    .offer-includes { text-align: left; margin: 40px 0; list-style: none; }
+    .offer-includes li { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; color: #bbb; display: flex; align-items: center; gap: 14px; }
+    .offer-includes li::before { content: '—'; color: var(--gold); font-family: 'Playfair Display', serif; flex-shrink: 0; }
+    .payment { margin-top: 48px; }
+    .payment-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+    .payment-cards { display: flex; justify-content: center; gap: 12px; margin-bottom: 32px; }
+    .card-badge { background: #1e1e1e; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 18px; font-size: 0.85rem; font-weight: 500; color: #ccc; }
+    .card-badge.visa { color: #1a65ff; }
+    .card-badge.mc { color: #eb5757; }
+    .card-badge.pp { color: #009cde; }
+    footer { padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    footer p { font-size: 0.78rem; color: #444; max-width: 100%; margin: 0 auto; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 700px) {
+      .stats { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .offer-box { padding: 48px 28px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Welcome to Our Landing Page!</h1>
-        <p>Your journey to success starts here.</p>
+<nav><span>Comment Devenir Riche</span></nav>
+<div class="hero">
+  <p class="hero-label">Formation Exclusive — Édition Limitée</p>
+  <h1>Arrête de travailler pour l'argent.<br>Fais travailler <em>l'argent</em> pour toi.</h1>
+  <p class="hero-sub">La méthode exacte utilisée par les 1% pour construire une richesse durable — enfin accessible.</p>
+  <div class="hero-cta"><a href="#offre" class="btn-gold">Accéder à la Formation</a></div>
+  <span class="hero-scroll">↓ Découvrir</span>
+</div>
+<div class="stats">
+  <div class="stat"><span class="stat-number">12 400+</span><span class="stat-label">Élèves formés</span></div>
+  <div class="stat"><span class="stat-number">94%</span><span class="stat-label">Taux de satisfaction</span></div>
+  <div class="stat"><span class="stat-number">8,3×</span><span class="stat-label">Retour sur investissement</span></div>
+</div>
+<section>
+  <span class="section-tag">Le Constat</span>
+  <h2>La richesse ne s'improvise pas. Elle se construit.</h2>
+  <p>La majorité des gens pensent que devenir riche, c'est une question de chance ou de naissance. C'est faux. Les grandes fortunes modernes ont été bâties sur des principes précis, reproductibles, et enseignables.</p>
+  <p>Pendant des années, ces stratégies étaient réservées aux initiés. Aujourd'hui, cette formation les rassemble toutes en un seul programme dense et actionnable.</p>
+</section>
+<div class="pillars">
+  <div class="pillars-inner">
+    <span class="section-tag">Le Programme</span>
+    <h2>Les 8 piliers de la liberté financière</h2>
+    <div class="pillars-grid">
+      <div class="pillar"><span class="pillar-num">01</span><h3>Mindset de l'Abondance</h3><p>Reprogramme tes croyances limitantes sur l'argent. La richesse commence dans l'esprit.</p></div>
+      <div class="pillar"><span class="pillar-num">02</span><h3>Revenus Passifs</h3><p>Construis des systèmes qui génèrent de l'argent pendant que tu dors.</p></div>
+      <div class="pillar"><span class="pillar-num">03</span><h3>Investissement Stratégique</h3><p>Comprends les marchés financiers et fais croître ton capital sur le long terme.</p></div>
+      <div class="pillar"><span class="pillar-num">04</span><h3>Optimisation Fiscale</h3><p>Découvre les structures légales pour conserver ce que tu gagnes.</p></div>
+      <div class="pillar"><span class="pillar-num">05</span><h3>Entrepreneuriat Digital</h3><p>Crée une offre en ligne scalable qui génère des revenus à l'infini.</p></div>
+      <div class="pillar"><span class="pillar-num">06</span><h3>Levier et Dette Intelligente</h3><p>Utilisée correctement, la dette démultiplie ton capital.</p></div>
+      <div class="pillar"><span class="pillar-num">07</span><h3>Réseau et Capital Social</h3><p>Ton réseau détermine ta valeur nette. Construis des relations stratégiques.</p></div>
+      <div class="pillar"><span class="pillar-num">08</span><h3>Protection du Patrimoine</h3><p>Accumule et protège ta richesse des crises et du temps.</p></div>
     </div>
-    <div class="email-capture">
-        <h2>Sign Up for Updates!</h2>
-        <input type="email" placeholder="Enter your email">
-        <button>Subscribe</button>
+  </div>
+</div>
+<div class="testimonials">
+  <div class="testimonials-inner">
+    <span class="section-tag">Témoignages</span>
+    <h2>Ils ont appliqué. Les résultats parlent.</h2>
+    <div class="testi-grid">
+      <div class="testi"><p class="testi-text">"J'étais salarié à 2 200€ nets. Six mois après, j'avais doublé mes revenus mensuels."</p><span class="testi-author">— Karim T., 34 ans, Lyon</span></div>
+      <div class="testi"><p class="testi-text">"Le module fiscal m'a fait économiser plus que le prix de la formation dès le premier trimestre."</p><span class="testi-author">— Inès M., 29 ans, Paris</span></div>
+      <div class="testi"><p class="testi-text">"Sceptique au départ, convaincu après. Je comprends enfin où mettre mon argent."</p><span class="testi-author">— Théo V., 41 ans, Bordeaux</span></div>
     </div>
-    <div class="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div>
-            <h3>What is this?</h3>
-            <div class="faq-content">This is a landing page designed to capture leads and provide information.</div>
-        </div>
-        <div>
-            <h3>How does it work?</h3>
-            <div class="faq-content">Users can sign up with their email to receive updates and information.</div>
-        </div>
+  </div>
+</div>
+<div class="offer" id="offre">
+  <div class="offer-box">
+    <span class="section-tag" style="display:block;text-align:center;">Investissement unique</span>
+    <h2 style="font-family:'Playfair Display',serif;">Accès Complet à la Formation</h2>
+    <div class="offer-price"><sup>€</sup>500</div>
+    <p class="offer-sub">Paiement unique — Accès à vie</p>
+    <ul class="offer-includes">
+      <li>8 modules vidéo haute densité (14h de contenu)</li>
+      <li>Fiches récapitulatives PDF téléchargeables</li>
+      <li>Modèles de tableaux de suivi patrimonial</li>
+      <li>Accès au groupe privé de membres</li>
+      <li>Mises à jour incluses à vie</li>
+      <li>Garantie satisfait ou remboursé 30 jours</li>
+    </ul>
+    <div class="payment">
+      <p class="payment-label">Paiement sécurisé accepté</p>
+      <div class="payment-cards">
+        <span class="card-badge visa">VISA</span>
+        <span class="card-badge mc">Mastercard</span>
+        <span class="card-badge pp">PayPal</span>
+      </div>
+      <button class="btn-gold" style="width:100%;padding:22px;">Je rejoins la formation →</button>
     </div>
-    <div class="guarantee">
-        <h2>Our Guarantee</h2>
-        <div class="guarantee-content">We offer a 30-day money-back guarantee on all our services.</div>
-    </div>
-    <script>
-        document.querySelectorAll('.faq h3').forEach(header => {
-            header.addEventListener('click', () => {
-                header.nextElementSibling.style.display = header.nextElementSibling.style.display === 'block' ? 'none' : 'block';
-            });
-        });
-    </script>
+  </div>
+</div>
+<footer>
+  <p>© 2025 Comment Devenir Riche — Tous droits réservés</p>
+  <p>Cette page est un projet fictif créé à titre éducatif et de démonstration.</p>
+</footer>
 </body>
 </html>
