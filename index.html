@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .header {
+            background: url('header-bg.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .email-capture {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .faq, .guarantee {
+            margin: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .faq h2, .guarantee h2 {
+            cursor: pointer;
+        }
+        .faq-content, .guarantee-content {
+            display: none;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Our Landing Page!</h1>
+        <p>Your journey to success starts here.</p>
+    </div>
+    <div class="email-capture">
+        <h2>Sign Up for Updates!</h2>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </div>
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div>
+            <h3>What is this?</h3>
+            <div class="faq-content">This is a landing page designed to capture leads and provide information.</div>
+        </div>
+        <div>
+            <h3>How does it work?</h3>
+            <div class="faq-content">Users can sign up with their email to receive updates and information.</div>
+        </div>
+    </div>
+    <div class="guarantee">
+        <h2>Our Guarantee</h2>
+        <div class="guarantee-content">We offer a 30-day money-back guarantee on all our services.</div>
+    </div>
+    <script>
+        document.querySelectorAll('.faq h3').forEach(header => {
+            header.addEventListener('click', () => {
+                header.nextElementSibling.style.display = header.nextElementSibling.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
